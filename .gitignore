@@ -1,0 +1,8 @@
+solar-env/ 
+data/ 
+*.csv 
+.ipynb_checkpoints/ 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
