@@ -25,6 +25,8 @@ Analyze and explore a large dataset of financial news headlines alongside histor
 │ └── yfinance_data/
 │ └── AAPL_historical_data.csv # Historical stock price data
 ├── requirements.txt # Python dependencies
-└── README.md 
+└── README.md
+
 👤 Author
 GitHub: your-Bektu
+
