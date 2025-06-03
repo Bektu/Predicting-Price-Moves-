@@ -1,24 +1,28 @@
-# quant_stats.py
-pip instal talib
 import pandas as pd
 import talib
+import numpy as np
 
 def add_technical_indicators(df):
-    df = df.sort_values('date')  # Make sure it's sorted
+    # If MultiIndex, flatten
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(1)
 
-    # Calculate returns
+    df = df.sort_values('date').copy()
+
+    # Ensure numeric types
+    df['close'] = pd.to_numeric(df['close'], errors='coerce')
+    df['high'] = pd.to_numeric(df['high'], errors='coerce')
+    df['low'] = pd.to_numeric(df['low'], errors='coerce')
+
+    # Ensure no bad shapes
+    close = df['close'].values.astype(float)
+    high = df['high'].values.astype(float)
+    low = df['low'].values.astype(float)
+
     df['daily_return'] = df['close'].pct_change()
-
-    # Moving Averages
-    df['sma_10'] = talib.SMA(df['close'], timeperiod=10)
-    df['ema_10'] = talib.EMA(df['close'], timeperiod=10)
-
-    # Volatility Indicators
-    df['atr'] = talib.ATR(df['high'], df['low'], df['close'], timeperiod=14)
-    df['boll_upper'], df['boll_middle'], df['boll_lower'] = talib.BBANDS(df['close'])
+    df['sma_10'] = talib.SMA(close, timeperiod=10)
+    df['ema_10'] = talib.EMA(close, timeperiod=10)
+    df['atr'] = talib.ATR(high, low, close, timeperiod=14)
+    df['boll_upper'], df['boll_middle'], df['boll_lower'] = talib.BBANDS(close)
 
     return df
-
-def describe_price_statistics(df):
-    summary = df[['close', 'daily_return', 'sma_10', 'ema_10', 'atr']].describe()
-    return summary
