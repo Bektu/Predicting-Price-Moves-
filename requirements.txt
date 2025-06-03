@@ -6,4 +6,8 @@ scipy
 streamlit
 pytest
 jupyterlab                            
-windrose  
+textblob
+nltk
+scikit-learn
+TA-Lib
+pytest
