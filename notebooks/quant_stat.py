@@ -26,3 +26,18 @@ def add_technical_indicators(df):
     df['boll_upper'], df['boll_middle'], df['boll_lower'] = talib.BBANDS(close)
 
     return df
+def describe_price_statistics(df):
+    cols = ['close', 'daily_return', 'sma_10', 'ema_10', 'atr']
+    existing = [c for c in cols if c in df.columns]
+    return df[existing].describe()
+def add_more_indicators(df):
+    close = df['close'].values
+    # Relative Strength Index
+    df['rsi_14'] = talib.RSI(close, timeperiod=14)
+    # MACD
+    macd, macd_signal, macd_hist = talib.MACD(close, fastperiod=12, slowperiod=26, signalperiod=9)
+    df['macd'] = macd
+    df['macd_signal'] = macd_signal
+    df['macd_hist'] = macd_hist
+
+    return df
