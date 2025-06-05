@@ -6,7 +6,7 @@ This repository contains the interim deliverables for **Task 1** of the **Financ
 
 ---
 
-## 🎯 Objective – Task 1
+## 🎯 Objective – 
 
 Analyze and explore a large dataset of financial news headlines alongside historical stock price data to:
 
@@ -16,10 +16,11 @@ Analyze and explore a large dataset of financial news headlines alongside histor
 - Prepare cleaned, enriched data for sentiment-price correlation analysis in Task 2.
 ## Repo Structure
 ├── notebooks/
-│ └── EDA_Initial.ipynb # Main notebook for Task 1 (EDA & quantitative analysis)
+│ └── CummulativeEDA.ipynb # Main notebook  (EDA & quantitative analysis)
 ├── eda.py # Custom module: News EDA visualizations
 ├── quant_stat.py # Custom module: Price stats and technical indicators
-├── text_analyser.py # (Planned) NLP analysis of headlines (for Task 2)
+├── analyser.py # (Planned) NLP analysis of headlines 
+├── corr.py # (Planned) NLP analysis of headlines 
 ├── data/
 │ ├── fnspid_news.csv # Cleaned financial news dataset
 │ └── yfinance_data/
